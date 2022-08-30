@@ -18,10 +18,14 @@ export default class Form extends Component {
     } = this.props;
     return (
       <form>
+        <h1>
+          Adicionar nova carta
+        </h1>
         <label htmlFor="cardName">
           Nome
           <input
             name="cardName"
+            placeholder="Nome da Carta"
             type="text"
             data-testid="name-input"
             value={ cardName }
@@ -35,6 +39,7 @@ export default class Form extends Component {
           <textarea
             name="cardDescription"
             data-testid="description-input"
+            placeholder="Descrição da carta"
             value={ cardDescription }
             onChange={ onInputChange }
             required
@@ -42,33 +47,39 @@ export default class Form extends Component {
         </label>
 
         <label htmlFor="cardAttr1">
-          Attr1
+          Primeiro atributo
           <input
             name="cardAttr1"
             type="number"
             data-testid="attr1-input"
+            min={ 0 }
+            max={ 90 }
             value={ cardAttr1 }
             onChange={ onInputChange }
           />
         </label>
 
         <label htmlFor="cardAttr2">
-          Attr2
+          Segundo atributo
           <input
             name="cardAttr2"
             type="number"
             data-testid="attr2-input"
+            min={ 0 }
+            max={ 90 }
             value={ cardAttr2 }
             onChange={ onInputChange }
           />
         </label>
 
         <label htmlFor="cardAttr3">
-          Attr3
+          Terceiro atributo
           <input
             name="cardAttr3"
             type="number"
             data-testid="attr3-input"
+            min={ 0 }
+            max={ 90 }
             value={ cardAttr3 }
             onChange={ onInputChange }
           />
@@ -82,6 +93,7 @@ export default class Form extends Component {
             data-testid="image-input"
             value={ cardImage }
             onChange={ onInputChange }
+            required
           />
         </label>
 
@@ -92,6 +104,7 @@ export default class Form extends Component {
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
+            required
           >
             <option value="normal">normal</option>
             <option value="raro">raro</option>
@@ -115,7 +128,16 @@ export default class Form extends Component {
           type="button"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
+          onClick={ () => onSaveButtonClick({
+            cardName,
+            cardDescription,
+            cardAttr1,
+            cardAttr2,
+            cardAttr3,
+            cardImage,
+            cardRare,
+            cardTrunfo,
+          }) }
         >
           Salvar
         </button>
